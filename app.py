@@ -5,7 +5,7 @@ import pandas as pd
 app = Flask(__name__)
 
 # Load the model
-with open('insurancemodelf.pkl', 'rb') as f:
+with open('insurancemodelf_fullfeatures.pkl', 'rb') as f:
     model = pickle.load(f)
 
 @app.route('/')
@@ -18,9 +18,11 @@ def predict():
         # Get data from form
         data = {
             'age': int(request.form['age']),
+            'sex': 1 if request.form['sex'] == 'male' else 0,
             'bmi': float(request.form['bmi']),
             'children': int(request.form['children']),
-            'smoker': 1 if request.form['smoker'] == 'yes' else 0
+            'smoker': 1 if request.form['smoker'] == 'yes' else 0,
+            'region': {'northwest': 0, 'northeast': 1, 'southeast': 2, 'southwest': 3}[request.form['region']]
         }
         
         # Create DataFrame
