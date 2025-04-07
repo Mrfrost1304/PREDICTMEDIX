@@ -1,18 +1,38 @@
 
 import os
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, render_template, send_from_directory
 import pickle
 import pandas as pd
 
 app = Flask(__name__)
 
-# Load the model
-with open('insurancemodelf_fullfeatures.pkl', 'rb') as f:
-    model = pickle.load(f)
+# Load the model with error handling
+try:
+    with open('insurancemodelf_fullfeatures.pkl', 'rb') as f:
+        model = pickle.load(f)
+except FileNotFoundError:
+    raise Exception("Model file not found. Please ensure insurancemodelf_fullfeatures.pkl exists.")
+except Exception as e:
+    raise Exception(f"Error loading model: {str(e)}")
 
 @app.route('/')
 def home():
     return render_template('index.html')
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')
+
+@app.route('/resumes/<filename>')
+def download_resume(filename):
+    # Create resumes directory if it doesn't exist
+    os.makedirs('resumes', exist_ok=True)
+    return send_from_directory('resumes', filename, as_attachment=True)
+
 
 @app.route('/predict', methods=['POST'])
 def predict():
