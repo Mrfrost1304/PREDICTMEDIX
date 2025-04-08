@@ -7,16 +7,45 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary: #3b82f6;
+            --secondary: #1d4ed8;
+            --accent: #60a5fa;
+            --light: #f8fafc;
+            --dark: #1e293b;
+        }
+        
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f8fafc;
-            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%230d9488' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+            background-color: var(--light);
+            color: var(--dark);
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 2rem;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50%;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
         }
     </style>
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="bg-blue-800 text-white shadow-lg">
+    <nav class="gradient-bg text-white shadow-lg">
         <div class="container mx-auto px-6 py-3">
             <div class="flex justify-between items-center">
                 <div class="flex items-center space-x-4">
@@ -26,14 +55,71 @@
                     <span class="text-xl font-semibold">Predictmedix</span>
                 </div>
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="/" class="hover:text-teal-200">Home</a>
-                    <a href="/about" class="hover:text-teal-200">About</a>
-                   
-                    <a href="/contact" class="hover:text-teal-200">Contact</a>
+                    <a href="/" class="hover:text-blue-200 transition-colors">Home</a>
+                    <a href="/about" class="hover:text-blue-200 transition-colors">About</a>
+                    <a href="/contact" class="hover:text-blue-200 transition-colors">Contact</a>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="menu-toggle" class="text-white hover:text-blue-200 transition-all duration-300 transform hover:scale-110 focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
                 </div>
             </div>
         </div>
     </nav>
+
+    <!-- Mobile Sidebar -->
+    <div id="mobile-menu" class="hidden fixed inset-0 z-50">
+        <div class="fixed inset-0 bg-black bg-opacity-50 transition-opacity duration-300 opacity-0" id="menu-backdrop"></div>
+        <div class="fixed inset-y-0 right-0 w-64 bg-gradient-to-b from-blue-600 to-blue-800 shadow-xl transform translate-x-full transition-transform duration-300">
+            <div class="flex items-center justify-between p-4 border-b border-blue-500">
+                <span class="text-xl font-semibold text-white">Menu</span>
+                <button id="menu-close" class="text-blue-200 hover:text-white transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <nav class="p-4">
+                <ul class="space-y-4">
+                    <li><a href="/" class="block px-4 py-2 text-blue-100 hover:bg-blue-700 hover:text-white rounded transition-all duration-300 transform hover:scale-105 hover:shadow-md hover:translate-x-2">Home</a></li>
+                    <li><a href="/about" class="block px-4 py-2 text-blue-100 hover:bg-blue-700 hover:text-white rounded transition-all duration-300 transform hover:scale-105 hover:shadow-md hover:translate-x-2">About</a></li>
+                    <li><a href="/contact" class="block px-4 py-2 text-blue-100 hover:bg-blue-700 hover:text-white rounded transition-all duration-300 transform hover:scale-105 hover:shadow-md hover:translate-x-2">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <script>
+        const menuToggle = document.getElementById('menu-toggle');
+        const menuClose = document.getElementById('menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuBackdrop = document.getElementById('menu-backdrop');
+        const menuPanel = mobileMenu.querySelector('div:last-child');
+
+        function openMenu() {
+            mobileMenu.classList.remove('hidden');
+            setTimeout(() => {
+                menuBackdrop.classList.remove('opacity-0');
+                menuPanel.classList.remove('translate-x-full');
+            }, 10);
+        }
+
+        function closeMenu() {
+            menuBackdrop.classList.add('opacity-0');
+            menuPanel.classList.add('translate-x-full');
+            setTimeout(() => {
+                mobileMenu.classList.add('hidden');
+            }, 300);
+        }
+
+        menuToggle.addEventListener('click', openMenu);
+        menuClose.addEventListener('click', closeMenu);
+        menuBackdrop.addEventListener('click', closeMenu);
+    </script>
 
     <!-- Hero Section -->
     <div class="bg-gradient-to-r from-blue-700 to-blue-900 text-white py-16">
@@ -153,15 +239,15 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-12">
+    <footer class="bg-gray-900 text-white py-16">
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div>
-                    <h3 class="text-xl font-semibold mb-4">Predictmedix</h3>
-                    <p class="text-gray-400">Helping you make informed decisions about your healthcare costs through advanced predictive analytics.</p>
+                    <h3 class="text-2xl font-bold mb-4">Predictmedix</h3>
+                    <p class="text-gray-400">A college project demonstrating healthcare cost prediction using machine learning.</p>
                 </div>
                 <div>
-                    <h3 class="text-xl font-semibold mb-4">Quick Links</h3>
+                    <h3 class="text-2xl font-bold mb-4">Quick Links</h3>
                     <ul class="space-y-2">
                         <li><a href="/" class="text-gray-400 hover:text-white">Home</a></li>
                         <li><a href="/about" class="text-gray-400 hover:text-white">About</a></li>
@@ -170,12 +256,12 @@
                     </ul>
                 </div>
                 <div>
-                    <h3 class="text-xl font-semibold mb-4">Health Tips</h3>
+                    <h3 class="text-2xl font-bold mb-4">Health Tips</h3>
                     <p class="text-gray-400">Regular exercise and a balanced diet can significantly reduce your healthcare costs over time.</p>
                 </div>
             </div>
             <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-                <p>© 2023 Predictmedix. All rights reserved.</p>
+                <p>© 2025 Predictmedix. Computer Science Department. All rights reserved</p>
             </div>
         </div>
     </footer>

@@ -59,31 +59,34 @@
             opacity: 1;
         }
         
-        .team-card {
-            transition: all 0.3s ease;
+        .team-member-card {
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
             background: white;
-            border-radius: 12px;
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
             position: relative;
         }
         
-        .team-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        .team-member-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
         }
         
-        .student-badge {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: var(--primary);
-            color: white;
-            padding: 0.25rem 0.5rem;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            font-weight: 600;
+        .team-member-image {
+            height: 280px;
+            background: linear-gradient(to bottom, #f0f4f8, #e0e8f0);
         }
+        
+        .team-member-image img {
+            transition: transform 0.3s ease;
+        }
+        
+        .team-member-card:hover .team-member-image img {
+            transform: scale(1.05);
+        }
+        
+        
         
         .section-title {
             position: relative;
@@ -144,12 +147,69 @@
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="/" class="hover:text-blue-200 transition-colors">Home</a>
                     <a href="/about" class="font-medium hover:text-blue-200 transition-colors">About</a>
-                    
                     <a href="/contact" class="hover:text-blue-200 transition-colors">Contact</a>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="menu-toggle" class="text-white hover:text-blue-200 transition-all duration-300 transform hover:scale-110 focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
                 </div>
             </div>
         </div>
     </nav>
+
+    <!-- Mobile Sidebar -->
+    <div id="mobile-menu" class="hidden fixed inset-0 z-50">
+        <div class="fixed inset-0 bg-black bg-opacity-50 transition-opacity duration-300 opacity-0" id="menu-backdrop"></div>
+        <div class="fixed inset-y-0 right-0 w-64 bg-gradient-to-b from-blue-600 to-blue-800 shadow-xl transform translate-x-full transition-transform duration-300">
+            <div class="flex items-center justify-between p-4 border-b border-blue-500">
+                <span class="text-xl font-semibold text-white">Menu</span>
+                <button id="menu-close" class="text-blue-200 hover:text-white transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <nav class="p-4">
+                <ul class="space-y-4">
+                    <li><a href="/" class="block px-4 py-2 text-blue-100 hover:bg-blue-700 hover:text-white rounded transition-all duration-300 transform hover:scale-105 hover:shadow-md hover:translate-x-2">Home</a></li>
+                    <li><a href="/about" class="block px-4 py-2 text-blue-100 hover:bg-blue-700 hover:text-white rounded transition-all duration-300 transform hover:scale-105 hover:shadow-md hover:translate-x-2">About</a></li>
+                    <li><a href="/contact" class="block px-4 py-2 text-blue-100 hover:bg-blue-700 hover:text-white rounded transition-all duration-300 transform hover:scale-105 hover:shadow-md hover:translate-x-2">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <script>
+        const menuToggle = document.getElementById('menu-toggle');
+        const menuClose = document.getElementById('menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuBackdrop = document.getElementById('menu-backdrop');
+        const menuPanel = mobileMenu.querySelector('div:last-child');
+
+        function openMenu() {
+            mobileMenu.classList.remove('hidden');
+            setTimeout(() => {
+                menuBackdrop.classList.remove('opacity-0');
+                menuPanel.classList.remove('translate-x-full');
+            }, 10);
+        }
+
+        function closeMenu() {
+            menuBackdrop.classList.add('opacity-0');
+            menuPanel.classList.add('translate-x-full');
+            setTimeout(() => {
+                mobileMenu.classList.add('hidden');
+            }, 300);
+        }
+
+        menuToggle.addEventListener('click', openMenu);
+        menuClose.addEventListener('click', closeMenu);
+        menuBackdrop.addEventListener('click', closeMenu);
+    </script>
 
     <!-- Main Content -->
     <div class="container mx-auto px-6 py-16">
@@ -229,48 +289,72 @@
         <div class="mb-20 animate-fade-in">
             <h2 class="text-4xl font-bold text-center mb-12 section-title">Our Team</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="team-card">
-                    <div class="student-badge">Student</div>
-                    <div class="w-full h-48 bg-gray-200 overflow-hidden">
-                        <img src="https://media.licdn.com/dms/image/v2/D4D03AQG48g5l0_eSfw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1694769849908?e=1749686400&v=beta&t=bhz-NInpKIuisHIdlB1EQ0k0wLuUImsgaT9GEVLDG3k" alt="Team Member" class="w-full h-full object-cover">
+                <div class="team-member-card">
+                    <div class="team-member-image overflow-hidden">
+                        <img src="https://media.licdn.com/dms/image/v2/D4D03AQG48g5l0_eSfw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1694769849908?e=1749686400&v=beta&t=bhz-NInpKIuisHIdlB1EQ0k0wLuUImsgaT9GEVLDG3k" 
+                             alt="Tushar Saxena" 
+                             class="w-full h-full object-cover">
                     </div>
-                    <div class="p-6 text-center">
-                        <h3 class="text-xl font-bold mb-1">Tushar Saxena</h3>
-                        <p class="text-blue-600 font-medium mb-3">Full Stack engineer</p>
-                        <p class="text-gray-600 text-sm">Developed Frontend UI and integration with backend  </p>
-                    </div>
-                </div>
-                <div class="team-card">
-                    <div class="student-badge">Student</div>
-                    <div class="w-full h-48 bg-gray-200 overflow-hidden">
-                        <img src="/static/Pictures/sarveshPic.jpeg" alt="Team Member" class="w-full h-full object-cover">
-                    </div>
-                    <div class="p-6 text-center">
-                        <h3 class="text-xl font-bold mb-1">Sarvesh Mishra</h3>
-                        <p class="text-blue-600 font-medium mb-3">Full Stack Dev</p>
-                        <p class="text-gray-600 text-sm">Built web application and API endpoints</p>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-xl font-bold mb-1">Tushar Saxena</h3>
+                                <p class="text-blue-600 font-medium mb-3">Full Stack Developer</p>
+                            </div>
+                            
+                        </div>
+                        <p class="text-gray-600 text-sm">Developed Frontend UI and integration with backend using Python and web technologies.</p>
                     </div>
                 </div>
-                <div class="team-card">
-                    <div class="student-badge">Student</div>
-                    <div class="w-full h-48 bg-gray-200 overflow-hidden">
-                        <img src="/static/Pictures/SurajPic.jpeg" alt="Team Member" class="w-full h-full object-cover">
+                <div class="team-member-card">
+                    <div class="team-member-image overflow-hidden">
+                        <img src="/static/Pictures/sarveshPic.jpeg" 
+                             alt="Sarvesh Mishra" 
+                             class="w-full h-full object-cover">
                     </div>
-                    <div class="p-6 text-center">
-                        <h3 class="text-xl font-bold mb-1">Suraj Maurya</h3>
-                        <p class="text-blue-600 font-medium mb-3">UI/UX Design</p>
-                        <p class="text-gray-600 text-sm">Designed interfaces and user flows</p>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-xl font-bold mb-1">Sarvesh Mishra</h3>
+                                <p class="text-blue-600 font-medium mb-3">Full Stack Developer</p>
+                            </div>
+                            
+                        </div>
+                        <p class="text-gray-600 text-sm">Built web application and API endpoints with expertise in Flask and JavaScript.</p>
                     </div>
                 </div>
-                <div class="team-card">
-                    <div class="student-badge">Student</div>
-                    <div class="w-full h-48 bg-gray-200 overflow-hidden">
-                        <img src="https://media.licdn.com/dms/image/v2/D5603AQEjrJ1KcSZpRQ/profile-displayphoto-shrink_800_800/B56ZVqdLboGQAc-/0/1741247789260?e=1749686400&v=beta&t=FmiSiIgJEGncCRlPLtkDGdpMxDvmMWGpuILN8ZRcydg" alt="Team Member" class="w-full h-full object-cover">
+                <div class="team-member-card">
+                    <div class="team-member-image overflow-hidden">
+                        <img src="/static/Pictures/SurajPic.jpeg" 
+                             alt="Suraj Maurya" 
+                             class="w-full h-full object-cover">
                     </div>
-                    <div class="p-6 text-center">
-                        <h3 class="text-xl font-bold mb-1">Atul Kumar</h3>
-                        <p class="text-blue-600 font-medium mb-3">Backend Engineer</p>
-                        <p class="text-gray-600 text-sm">Implemented server infrastructure</p>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-xl font-bold mb-1">Suraj Maurya</h3>
+                                <p class="text-blue-600 font-medium mb-3">UI/UX Designer</p>
+                            </div>
+                            
+                        </div>
+                        <p class="text-gray-600 text-sm">Designed intuitive interfaces and user flows with a focus on accessibility and user experience.</p>
+                    </div>
+                </div>
+                <div class="team-member-card">
+                    <div class="team-member-image overflow-hidden">
+                        <img src="https://media.licdn.com/dms/image/v2/D5603AQEjrJ1KcSZpRQ/profile-displayphoto-shrink_800_800/B56ZVqdLboGQAc-/0/1741247789260?e=1749686400&v=beta&t=FmiSiIgJEGncCRlPLtkDGdpMxDvmMWGpuILN8ZRcydg" 
+                             alt="Atul Kumar" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-xl font-bold mb-1">Atul Kumar</h3>
+                                <p class="text-blue-600 font-medium mb-3">Machine Learning Engineer</span>
+                            </div>
+                            
+                        </div>
+                        <p class="text-gray-600 text-sm">Design and made algorithm for machine learning project </p>
                     </div>
                 </div>
             </div>
@@ -295,13 +379,13 @@
                     </ul>
                 </div>
                 <div>
-                    <h3 class="text-xl font-semibold mb-4">Health Tips</h3>
+                    <h3 class="text-2xl font-bold mb-4">Health Tips</h3>
                     <p class="text-gray-400">Regular exercise and a balanced diet can significantly reduce your healthcare costs over time.</p>
                 </div>
                 
             </div>
-            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500">
-                <p>© 2023 Predictmedix - College Project</p>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>© 2025 Predictmedix. Computer Science Department. All rights reserved</p>
             </div>
         </div>
     </footer>
