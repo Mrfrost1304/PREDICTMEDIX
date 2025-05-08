@@ -59,31 +59,36 @@
     </div>
 
     <script>
-        const menuToggle = document.getElementById('menu-toggle');
-        const menuClose = document.getElementById('menu-close');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const menuBackdrop = document.getElementById('menu-backdrop');
-        const menuPanel = mobileMenu.querySelector('div:last-child');
+        document.addEventListener('DOMContentLoaded', function () {
+            console.log('DOMContentLoaded event fired');
+            const menuToggle = document.getElementById('menu-toggle');
+            const menuClose = document.getElementById('menu-close');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuBackdrop = document.getElementById('menu-backdrop');
+            const menuPanel = mobileMenu.querySelector('div:last-child');
 
-        function openMenu() {
-            mobileMenu.classList.remove('hidden');
-            setTimeout(() => {
-                menuBackdrop.classList.remove('opacity-0');
-                menuPanel.classList.remove('translate-x-full');
-            }, 10);
-        }
+            function openMenu() {
+                console.log('openMenu called');
+                mobileMenu.classList.remove('hidden');
+                setTimeout(() => {
+                    menuBackdrop.classList.remove('opacity-0');
+                    menuPanel.classList.remove('translate-x-full');
+                }, 10);
+            }
 
-        function closeMenu() {
-            menuBackdrop.classList.add('opacity-0');
-            menuPanel.classList.add('translate-x-full');
-            setTimeout(() => {
-                mobileMenu.classList.add('hidden');
-            }, 300);
-        }
+            function closeMenu() {
+                console.log('closeMenu called');
+                menuBackdrop.classList.add('opacity-0');
+                menuPanel.classList.add('translate-x-full');
+                setTimeout(() => {
+                    mobileMenu.classList.add('hidden');
+                }, 300);
+            }
 
-        menuToggle.addEventListener('click', openMenu);
-        menuClose.addEventListener('click', closeMenu);
-        menuBackdrop.addEventListener('click', closeMenu);
+            menuToggle.addEventListener('click', openMenu);
+            menuClose.addEventListener('click', closeMenu);
+            menuBackdrop.addEventListener('click', closeMenu);
+        });
     </script>
 
     <!-- Main Content -->
@@ -108,7 +113,7 @@
                             <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452z"></path>
                             </svg>
-                            <a href="https://linkedin.com/in/tushar-saxena1304" target="_blank" class="hover:text-blue-600">linkedin.com/in/tushar-saxena1304</a>
+                            <a href="https://linkedin.com/in/tushar-saxena1304" target="_blank" class="hover:text-blue-600">https://linkedin.com/in/tushar-saxena1304</a>
                         </div>
                         <div class="flex items-center text-sm text-gray-600">
                             <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -140,26 +145,26 @@
                 </div>
                 <div class="p-6">
                     <h3 class="text-xl font-bold mb-1">Sarvesh Mishra</h3>
-                    <p class="text-blue-600 font-medium mb-3">Full Stack Developer</p>
+                    <p class="text-blue-600 font-medium mb-3">Research And Data</p>
                     
                     <div class="space-y-2 mb-4">
                         <div class="flex items-center text-sm text-gray-600">
                             <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452z"></path>
                             </svg>
-                            <a href="https://linkedin.com/in/sarvesh-mishra" target="_blank" class="hover:text-blue-600">linkedin.com/in/sarvesh-mishra</a>
+                            <a href="https://www.linkedin.com/in/sarvesh-mishra-a58447265" target="_blank" class="hover:text-blue-600">www.linkedin.com/in/sarvesh-mishra-a58447265</a>
                         </div>
                         <div class="flex items-center text-sm text-gray-600">
                             <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M17 12a1 1 0 01-1 1H8a1 1 0 010-2h8a1 1 0 011 1zm0-4a1 1 0 01-1 1H8a1 1 0 010-2h8a1 1 0 011 1zm0-4a1 1 0 01-1 1H8a1 1 0 110-2h8a1 1 0 011 1z"></path>
                             </svg>
-                            <span>+91 8299359698</span>
+                            <span>+91 94517 80915</span>
                         </div>
                         <div class="flex items-center text-sm text-gray-600">
                             <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
                             </svg>
-                            <a href="mailto:sarvesh@predictmedix.edu" class="hover:text-blue-600">sarvesh@predictmedix.edu</a>
+                            <a href="mailto:sarveshmishraoffi@gmail.com" class="hover:text-blue-600">sarveshmishraoffi@gmail.com</a>
                         </div>
                     </div>
                     
@@ -179,26 +184,26 @@
                 </div>
                 <div class="p-6">
                     <h3 class="text-xl font-bold mb-1">Suraj Maurya</h3>
-                    <p class="text-blue-600 font-medium mb-3">UI/UX Designer</p>
+                    <p class="text-blue-600 font-medium mb-3">Full Stack Developer</p>
                    
                     <div class="space-y-2 mb-4">
                         <div class="flex items-center text-sm text-gray-600">
                             <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452z"></path>
                             </svg>
-                            <a href="https://linkedin.com/in/suraj-maurya" target="_blank" class="hover:text-blue-600">linkedin.com/in/suraj-maurya</a>
+                            <a href="https://www.linkedin.com/in/suraj-maurya-bb4130256/" target="_blank" class="hover:text-blue-600">www.linkedin.com/in/sura-maurya-bb4130256</a>
                         </div>
                         <div class="flex items-center text-sm text-gray-600">
                             <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M17 12a1 1 0 01-1 1H8a1 1 0 010-2h8a1 1 0 011 1zm0-4a1 1 0 01-1 1H8a1 1 0 010-2h8a1 1 0 011 1zm0-4a1 1 0 01-1 1H8a1 1 0 110-2h8a1 1 0 011 1z"></path>
                             </svg>
-                            <span>+91 98765 43212</span>
+                            <span>+91 76178 84304</span>
                         </div>
                         <div class="flex items-center text-sm text-gray-600">
                             <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
                             </svg>
-                            <a href="mailto:suraj@predictmedix.edu" class="hover:text-blue-600">suraj@predictmedix.edu</a>
+                            <a href="mailto:mauryasuraj364@gmail.com" class="hover:text-blue-600">mauryasuraj364@gmail.com</a>
                         </div>
                     </div>
                     
@@ -225,7 +230,7 @@
                             <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452z"></path>
                             </svg>
-                            <a href="https://linkedin.com/in/atul-kumar-bb36232b4" target="_blank" class="hover:text-blue-600">linkedin.com/in/atul-kumar-bb36232b4</a>
+                            <a href="https://linkedin.com/in/atul-kumar-bb36232b4" target="_blank" class="hover:text-blue-600">www.linkedin.com/in/atul-kumar-bb36232b4</a>
                         </div>
                         <div class="flex items-center text-sm text-gray-600">
                             <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -241,7 +246,7 @@
                         </div>
                     </div>
                     
-                    <a href="/resumes/david_wilson.pdf" 
+                    <a href="/static/resumes/Atul Kumar resume.pdf" 
                        class="inline-block w-full text-center bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium text-sm transition-colors">
                         View Resume
                     </a>
@@ -253,7 +258,7 @@
         <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-md overflow-hidden mb-20">
             <div class="md:flex">
                 <div class="md:shrink-0">
-                    <img class="h-48 w-full md:h-full md:w-48 object-cover" src="https://randomuser.me/api/portraits/men/75.jpg" alt="Project Guide">
+                    <img class="h-48 w-full md:h-full md:w-48 object-cover" src="/static/Pictures/shobitsir.jpg" alt="Project Guide">
                 </div>
                 <div class="p-8">
                     <h2 class="text-2xl font-bold mb-2">Assistant prof. Shobhit mani tiwari</h2>
@@ -270,15 +275,15 @@
             <div class="space-y-4">
                 <div>
                     <h3 class="text-lg font-semibold text-gray-700">Email</h3>
-                    <p class="text-gray-600">team@predictmedix.edu</p>
+                    <p class="text-gray-600">smtewari.u2@gmail.com</p>
                 </div>
                 <div>
                     <h3 class="text-lg font-semibold text-gray-700">Office Hours</h3>
-                    <p class="text-gray-600">Monday-Friday: 9am-5pm</p>
+                    <p class="text-gray-600">Monday-Friday: 9am-4pm</p>
                 </div>
                 <div>
                     <h3 class="text-lg font-semibold text-gray-700">Location</h3>
-                    <p class="text-gray-600">Computer Science Department<br>University Building, Room 205</p>
+                    <p class="text-gray-600">Computer Science Department<br> LU New Campus Rd, Type IV, Sultanpur Village, Jankipuram Extension, Lucknow, Uttar Pradesh 226021</p>
                 </div>
             </div>
         </div>

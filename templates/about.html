@@ -59,31 +59,36 @@
     </div>
 
     <script>
-        const menuToggle = document.getElementById('menu-toggle');
-        const menuClose = document.getElementById('menu-close');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const menuBackdrop = document.getElementById('menu-backdrop');
-        const menuPanel = mobileMenu.querySelector('div:last-child');
+        document.addEventListener('DOMContentLoaded', function () {
+            console.log('DOMContentLoaded event fired');
+            const menuToggle = document.getElementById('menu-toggle');
+            const menuClose = document.getElementById('menu-close');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuBackdrop = document.getElementById('menu-backdrop');
+            const menuPanel = mobileMenu.querySelector('div:last-child');
 
-        function openMenu() {
-            mobileMenu.classList.remove('hidden');
-            setTimeout(() => {
-                menuBackdrop.classList.remove('opacity-0');
-                menuPanel.classList.remove('translate-x-full');
-            }, 10);
-        }
+            function openMenu() {
+                console.log('openMenu called');
+                mobileMenu.classList.remove('hidden');
+                setTimeout(() => {
+                    menuBackdrop.classList.remove('opacity-0');
+                    menuPanel.classList.remove('translate-x-full');
+                }, 10);
+            }
 
-        function closeMenu() {
-            menuBackdrop.classList.add('opacity-0');
-            menuPanel.classList.add('translate-x-full');
-            setTimeout(() => {
-                mobileMenu.classList.add('hidden');
-            }, 300);
-        }
+            function closeMenu() {
+                console.log('closeMenu called');
+                menuBackdrop.classList.add('opacity-0');
+                menuPanel.classList.add('translate-x-full');
+                setTimeout(() => {
+                    mobileMenu.classList.add('hidden');
+                }, 300);
+            }
 
-        menuToggle.addEventListener('click', openMenu);
-        menuClose.addEventListener('click', closeMenu);
-        menuBackdrop.addEventListener('click', closeMenu);
+            menuToggle.addEventListener('click', openMenu);
+            menuClose.addEventListener('click', closeMenu);
+            menuBackdrop.addEventListener('click', closeMenu);
+        });
     </script>
 
     <!-- Main Content -->
@@ -147,12 +152,12 @@
                     <h2 class="text-4xl font-bold text-center mb-10 section-title">Project Guide</h2>
                     <div class="flex flex-col md:flex-row items-center">
                         <div class="w-48 h-48 mb-8 md:mb-0 md:mr-10 rounded-full overflow-hidden profile-image">
-                            <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Project Guide" class="w-full h-full object-cover">
+                            <img src="/static/Pictures/shobitsir.jpg" alt="Project Guide" class="w-full h-full object-cover">
                         </div>
                         <div class="text-center md:text-left">
-                            <h3 class="text-2xl font-bold mb-2">Prof. Robert Williams</h3>
-                            <p class="text-blue-600 font-medium mb-4">Computer Science Department</p>
-                            <p class="text-gray-600 mb-4">With extensive experience in healthcare technology projects, Prof. Williams guided our team through the development of Predictmedix.</p>
+                            <h3 class="text-2xl font-bold mb-2">Er. Shobhit Mani Tiwari</h3>
+                            <p class="text-blue-600 font-medium mb-4">Computer Science & Engineering Department</p>
+                            <p class="text-gray-600 mb-4">With extensive experience in healthcare technology projects, Prof. Shobhit Mani sir guided our team through the development of Predictmedix.</p>
                             <p class="text-gray-600 italic">"This student project demonstrates excellent application of machine learning concepts to solve real-world healthcare challenges."</p>
                         </div>
                     </div>
@@ -191,11 +196,11 @@
                         <div class="flex justify-between items-start">
                             <div>
                                 <h3 class="text-xl font-bold mb-1">Sarvesh Mishra</h3>
-                                <p class="text-blue-600 font-medium mb-3">Full Stack Developer</p>
+                                <p class="text-blue-600 font-medium mb-3">Research and Data</p>
                             </div>
                             
                         </div>
-                        <p class="text-gray-600 text-sm">Built web application and API endpoints with expertise in Flask and JavaScript.</p>
+                        <p class="text-gray-600 text-sm">Responsibile for maintaining documentation and data collection.</p>
                     </div>
                 </div>
                 <div class="team-member-card">
@@ -208,11 +213,11 @@
                         <div class="flex justify-between items-start">
                             <div>
                                 <h3 class="text-xl font-bold mb-1">Suraj Maurya</h3>
-                                <p class="text-blue-600 font-medium mb-3">UI/UX Designer</p>
+                                <p class="text-blue-600 font-medium mb-3">Full stack developer</p>
                             </div>
                             
                         </div>
-                        <p class="text-gray-600 text-sm">Designed intuitive interfaces and user flows with a focus on accessibility and user experience.</p>
+                        <p class="text-gray-600 text-sm">Responsibile for building backend of the the project and deployement.</p>
                     </div>
                 </div>
                 <div class="team-member-card">
